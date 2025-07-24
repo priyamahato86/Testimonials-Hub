@@ -1,6 +1,7 @@
 
 const express = require('express');
 require('dotenv').config(); 
+console.log('🔍 MONGODB_URI is:', process.env.MONGODB_URI);
 const { engine } = require('express-handlebars');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -11,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 // MongoDB connection
 const MONGODB_URI = process.env.MONGODB_URI;
-console.log('🔍 MONGODB_URI is:', process.env.MONGODB_URI);
+
 mongoose.connect(MONGODB_URI, {
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
