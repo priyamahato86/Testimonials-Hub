@@ -1,0 +1,143 @@
+<div class="max-w-2xl mx-auto">
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Share Your Experience</h1>
+        <p class="text-gray-600">We'd love to hear about your experience with us</p>
+    </div>
+
+    {{#if errors.length}}
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+        <div class="flex items-center mb-2">
+            <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
+            <h3 class="text-red-800 font-semibold">Please fix the following errors:</h3>
+        </div>
+        <ul class="list-disc list-inside text-red-700">
+            {{#each errors}}
+            <li>{{msg}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+
+    <div class="bg-white rounded-lg shadow-md p-8">
+        <form action="/submit" method="POST" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                        Full Name <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        value="{{formData.name}}"
+                        required
+                        maxlength="100"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                        placeholder="Enter your full name"
+                    >
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        value="{{formData.email}}"
+                        required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                        placeholder="Enter your email address"
+                    >
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="company" class="block text-sm font-medium text-gray-700 mb-2">
+                        Company (Optional)
+                    </label>
+                    <input 
+                        type="text" 
+                        id="company" 
+                        name="company" 
+                        value="{{formData.company}}"
+                        maxlength="100"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                        placeholder="Your company name"
+                    >
+                </div>
+                
+                <div>
+                    <label for="position" class="block text-sm font-medium text-gray-700 mb-2">
+                        Position (Optional)
+                    </label>
+                    <input 
+                        type="text" 
+                        id="position" 
+                        name="position" 
+                        value="{{formData.position}}"
+                        maxlength="100"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                        placeholder="Your job title"
+                    >
+                </div>
+            </div>
+
+            <div>
+                <label for="rating" class="block text-sm font-medium text-gray-700 mb-2">
+                    Rating <span class="text-red-500">*</span>
+                </label>
+                <div class="flex items-center space-x-2">
+                    {{#each (range 5)}}
+                    <label class="cursor-pointer">
+                        <input 
+                            type="radio" 
+                            name="rating" 
+                            value="{{add this 1}}" 
+                            class="sr-only rating-input"
+                            {{#if (eq (add this 1) formData.rating)}}checked{{/if}}
+                            required
+                        >
+                        <i class="fas fa-star text-2xl text-gray-300 hover:text-yellow-400 transition-colors duration-200 rating-star"></i>
+                    </label>
+                    {{/each}}
+                    <span class="ml-4 text-sm text-gray-600">Click to rate</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                    Your Testimonial <span class="text-red-500">*</span>
+                </label>
+                <textarea 
+                    id="message" 
+                    name="message" 
+                    rows="5" 
+                    required
+                    minlength="10"
+                    maxlength="1000"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 resize-none"
+                    placeholder="Share your experience with us... (10-1000 characters)"
+                >{{formData.message}}</textarea>
+                <div class="mt-1 text-sm text-gray-500">
+                    <span id="char-count">0</span>/1000 characters
+                </div>
+            </div>
+
+            <div class="flex justify-center space-x-4">
+                <a href="/" class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200">
+                    Cancel
+                </a>
+                <button 
+                    type="submit" 
+                    class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                    <i class="fas fa-paper-plane mr-2"></i>
+                    Submit Testimonial
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
