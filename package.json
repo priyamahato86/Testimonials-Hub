@@ -2,9 +2,9 @@
   "name": "testimonials-app",
   "version": "1.0.0",
   "description": "A web application for collecting and displaying testimonials",
-  "main": "server.js",
+  "main": "api/index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node api/index.js",
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
